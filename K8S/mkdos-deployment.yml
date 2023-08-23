@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mkdocs-deployment
+  namespace: mkdocs
+  labels:
+    app: mkdocs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mkdocs
+  template:
+    metadata:
+      labels:
+        app: mkdocs
+    spec:
+      containers:
+        - name: mkdocs
+          image: sidvjsingh/mkdocs:latest
+          ports:
+            - containerPort: 8000
